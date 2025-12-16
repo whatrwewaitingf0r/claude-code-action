@@ -10,6 +10,11 @@ on:
       - "api/**/*.py"
       # You can add more specific patterns as needed
 
+# Prevent multiple reviews from running simultaneously on the same PR
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   claude-review-paths:
     runs-on: ubuntu-latest

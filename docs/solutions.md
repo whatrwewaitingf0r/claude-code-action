@@ -27,6 +27,11 @@ on:
   pull_request:
     types: [opened, synchronize]
 
+# Prevent multiple reviews from running simultaneously on the same PR
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   review:
     runs-on: ubuntu-latest
@@ -80,6 +85,11 @@ name: Claude Auto Review with Tracking
 on:
   pull_request:
     types: [opened, synchronize, ready_for_review, reopened]
+
+# Prevent multiple reviews from running simultaneously on the same PR
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   review:
@@ -145,6 +155,11 @@ on:
       - "src/api/**"
       - "config/security.yml"
 
+# Prevent multiple reviews from running simultaneously on the same PR
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   security-review:
     runs-on: ubuntu-latest
@@ -201,6 +216,11 @@ name: External Contributor Review
 on:
   pull_request:
     types: [opened, synchronize]
+
+# Prevent multiple reviews from running simultaneously on the same PR
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   external-review:
@@ -259,6 +279,11 @@ name: PR Review Checklist
 on:
   pull_request:
     types: [opened, synchronize]
+
+# Prevent multiple reviews from running simultaneously on the same PR
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   checklist-review:
@@ -448,6 +473,11 @@ on:
       - "src/api/**/*.ts"
       - "src/routes/**/*.ts"
 
+# Prevent multiple reviews from running simultaneously on the same PR
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   doc-sync:
     runs-on: ubuntu-latest
@@ -503,6 +533,11 @@ name: Security Review
 on:
   pull_request:
     types: [opened, synchronize]
+
+# Prevent multiple reviews from running simultaneously on the same PR
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   security:
